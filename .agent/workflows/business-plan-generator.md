@@ -4,250 +4,230 @@ description: Generate investment-ready HTML business plan with adversarial valid
 
 # Investment-Ready Business Plan Generator
 
-This skill generates comprehensive, investment-ready HTML business plans with adversarial validation, premium visuals, and grounded market research. Designed to create documents capable of securing investment.
-
-## Prerequisites
-- Access to web search for market research grounding
-- Image generation capability (or browser access to AI image generators)
-- Target market/location for the business
-
-## Workflow Steps
-
-### Phase 1: Discovery & Research
-
-1. **Understand the Business Concept**
-   - Read any provided transcripts, notes, or descriptions
-   - Identify: Industry, target market, geography, unique value proposition
-   - Extract: Technical requirements, competitive advantages, operational model
-
-2. **Conduct Web Research Grounding**
-   Search for the following (adapt to specific business):
-   - `[City/Region] [industry] market size cost pricing 2024 2025`
-   - `[State] contractor license requirements [business type] registration`
-   - `[industry] liability insurance cost 2024`
-   - `[industry] market growth trends 2024 2025`
-   - `[industry] startup costs equipment pricing`
-
-3. **Document Research Findings**
-   Create a research summary with:
-   - Market size (TAM/SAM/SOM)
-   - Pricing benchmarks (per unit, per hour, per sqft, etc.)
-   - Regulatory requirements (licenses, permits, insurance)
-   - Competitive landscape data
-   - Industry growth rates
+Generate comprehensive, investment-ready HTML business plans with adversarial validation, premium visuals, and grounded market research.
 
 ---
 
-### Phase 2: Section Development with Adversarial Validation
+## Quick Reference
 
-For each section, apply the 10-Persona, 3-Round validation methodology:
+### Default Configuration
 
-#### The 10 Adversarial Personas
+| Profile | Validation | Sections | Images | Charts |
+|---------|------------|----------|--------|--------|
+| Lite | V(3, 1, 0) | 5 core | 2 | 4 |
+| **Standard** | **V(8, 3, 1)** | **10** | **4** | **8** |
+| Deep | V(12, 5, 2) | 15 | 6 | 12 |
+
+### Mode Detection
+
+- **CREATE mode**: User says "create business plan for [X]" → Generate full plan
+- **REFINE mode**: User provides existing plan → Validate and improve
+
+### This Skill Uses
+
+- FORGE for section validation (V(8, 3, 1) per section)
+- Adversarial Validation (8-persona council)
+- Web grounding for market research
+
+---
+
+## Phase 1: Discovery & Research
+
+### 1. Understand the Business Concept
+
+From user input, identify:
+- Industry and target market
+- Geographic focus
+- Unique value proposition
+- Technical requirements
+- Competitive advantages
+
+### 2. Web Research Grounding
+
+Execute 3+ searches:
+```
+"[City] [industry] market size cost pricing 2024"
+"[State] contractor license requirements [business type]"
+"[industry] liability insurance cost 2024"
+"[industry] market growth trends forecast"
+"[industry] startup costs equipment pricing"
+```
+
+### 3. Document Research Findings
+
+Create summary with:
+- Market size (TAM/SAM/SOM)
+- Pricing benchmarks
+- Regulatory requirements
+- Competitive landscape
+- Industry growth rates
+
+---
+
+## Phase 2: Section Development with FORGE Validation
+
+Apply V(8, 3, 1) adversarial validation to each section:
+
+### The 8 Adversarial Personas
 
 | # | Persona | Focus Area |
-|---|---------|-----------|
-| 1 | **Skeptical VC** | Financial viability, ROI, market size |
-| 2 | **Insurance Actuary** | Liability, coverage gaps, premiums |
-| 3 | **Industry Regulator** | Compliance, permits, legal requirements |
-| 4 | **Industry Veteran** | Practical operations, margins, labor |
-| 5 | **IP/Business Attorney** | Contracts, liability, indemnification |
-| 6 | **Safety Engineer** | Equipment failure, safety protocols |
-| 7 | **Target Customer** | Value proposition, trust, concerns |
-| 8 | **Competitor** | Weaknesses, moat, differentiation |
-| 9 | **Environmental Officer** | Regulatory, environmental compliance |
-| 10 | **Scaling CEO** | Unit economics, hiring, expansion |
+|---|---------|------------|
+| 1 | Skeptical VC | Financial viability, ROI, market size |
+| 2 | Insurance Actuary | Liability, coverage gaps, premiums |
+| 3 | Industry Regulator | Compliance, permits, legal |
+| 4 | Industry Veteran | Practical operations, margins, labor |
+| 5 | Target Customer | Value proposition, trust, concerns |
+| 6 | Competitor | Weaknesses, moat, differentiation |
+| 7 | Safety/Risk Engineer | Equipment failure, protocols |
+| 8 | Scaling CEO | Unit economics, hiring, expansion |
 
-#### 3-Round Discourse Structure
+### 3-Round Validation per Section
 
-**Round 1: Initial Critique**
-- Each persona reviews section from their expert lens
-- Identifies gaps, errors, outdated information
-- Flags items with confidence < 90%
-
-**Round 2: Defense & Counter-Arguments**
-- Address critiques with additional web search
-- Resolve conflicts between personas
-- Update content with grounded data
-
-**Round 3: Consensus Building**
-- Final validation pass
-- Achieve 90%+ confidence on all claims
-- Document remaining caveats
+**Round 1**: Each persona critiques from their lens
+**Round 2**: Address critiques with web search, resolve conflicts
+**Round 3**: Achieve 90%+ confidence on all claims
 
 ---
 
-### Phase 3: Required Sections (Adapt as Needed)
+## Phase 3: Required Sections
 
-Generate 10-15 sections depending on business type:
+### Core Sections (all profiles)
 
-1. **Executive Summary** (~300 words)
-   - Investment thesis, key metrics, opportunity summary
+1. **Executive Summary** (~300 words) - Investment thesis, key metrics
+2. **The Problem** (~150 words) - Pain points, market gaps
+3. **The Solution** (~250 words) - Technology/service description
+4. **Market Opportunity** (~200 words) - TAM/SAM/SOM, growth rates
+5. **Competitive Analysis** (~200 words) - Positioning, differentiation
 
-2. **The Problem** (~150 words)
-   - Pain points, market gaps, customer frustrations
+### Standard Profile (add these)
 
-3. **The Solution** (~250 words)
-   - Technology/service description, key innovations
+6. **Local Market Deep Dive** (~200 words) - Geographic-specific data
+7. **Pricing Model** (~200 words) - Unit pricing, margins
+8. **Financial Projections** (~200 words) - 3-year revenue, break-even
+9. **Cost Breakdown** (~100 words) - Equipment, startup costs
+10. **Legal & Licensing** (~200 words) - Permits, compliance
 
-4. **Market Opportunity** (~200 words)
-   - TAM/SAM/SOM, growth rates, market timing
-
-5. **Competitive Analysis** (~200 words)
-   - Positioning matrix, differentiation, moat
-
-6. **Local/Target Market Deep Dive** (~200 words)
-   - Geographic-specific data, pricing, demand
-
-7. **Pricing Model** (~200 words)
-   - Unit pricing, margins, comparison to alternatives
-
-8. **Financial Projections** (~200 words)
-   - 3-year revenue, unit economics, break-even
-
-9. **Cost Breakdown / BOM** (~100 words)
-   - Equipment, startup costs, sources
-
-10. **Legal & Licensing** (~200 words)
-    - Required permits, registrations, compliance checklist
+### Deep Profile (add these)
 
 11. **Insurance Requirements** (~150 words)
-    - Coverage types, annual costs, providers
-
 12. **Operational Workflow** (~150 words)
-    - Day-to-day operations, process flow
-
-13. **Risk Assessment** (~150 words)
-    - Risk matrix (likelihood × impact), mitigations
-
+13. **Risk Assessment** (~150 words) - Risk matrix
 14. **Team & Hiring** (~100 words)
-    - Required skills, org structure, hiring timeline
-
-15. **Investment Ask & Use of Funds** (~150 words)
-    - Capital required, allocation, milestones
+15. **Investment Ask** (~150 words) - Capital required, use of funds
 
 ---
 
-### Phase 4: Visual Asset Creation
+## Phase 4: Visual Asset Creation
 
-1. **Generate Images** (3-5 minimum)
-   - Hero/header image showcasing the business
-   - System architecture or workflow diagram
-   - Before/after or comparison visual
-   - Additional industry-specific imagery
+### Generated Images (4 minimum)
 
-   Image prompts should include:
-   - Subject matter (what to show)
-   - Aesthetic style (cyberpunk, professional, clean, etc.)
-   - Technical quality (4K, photorealistic, etc.)
-   - Color scheme (match document palette)
+- Hero/header image showcasing the business
+- System architecture or workflow diagram
+- Before/after or comparison visual
+- Industry-specific imagery
 
-2. **Create CSS-Based Charts** (8-12 minimum)
-   - Market growth trajectory
-   - Cost comparison bars
-   - Profit margin comparison
-   - TAM/SAM/SOM visualization
-   - Hardware/cost breakdown
-   - Risk assessment matrix
-   - Revenue projection
-   - Fund allocation
+### CSS-Based Charts (8 minimum)
+
+- Market growth trajectory
+- Cost comparison bars
+- Profit margin comparison
+- TAM/SAM/SOM visualization
+- Hardware/cost breakdown
+- Risk assessment matrix
+- Revenue projection
+- Fund allocation
 
 ---
 
-### Phase 5: HTML Document Assembly
+## Phase 5: HTML Document Assembly
 
-#### Design System
+### Design System
 
 ```css
-/* Color Palette */
---primary: #00f3ff;    /* Innovation/tech - cyan */
---secondary: #ffe600;  /* Energy/action - yellow */
---danger: #ff0055;     /* Risk/warning - red */
---success: #00ff88;    /* Positive/profit - green */
+/* Colors */
+--primary: #00f3ff;    /* Cyan - innovation */
+--secondary: #ffe600;  /* Yellow - energy */
+--danger: #ff0055;     /* Red - risk */
+--success: #00ff88;    /* Green - profit */
 --dark: #0a0a0a;       /* Background */
 --panel: #121218;      /* Cards */
---text: #e0e0e0;       /* Body text */
 
 /* Typography */
-Headings: Space Grotesk (or similar modern sans)
-Body: Inter (clean, readable)
-Mono: JetBrains Mono (data/code)
+Headings: Space Grotesk
+Body: Inter
+Mono: JetBrains Mono
+```
 
-/* Key Elements */
+### Key Elements
+
 - Validation badges on each section
 - Micro-animations (fade-in on scroll)
-- Glowing accents on hover
 - Responsive grid layouts
-- Premium card styling with borders
-```
-
-#### Document Structure
-```html
-1. Hero section with stats overlay
-2. Alternating light/dark section backgrounds
-3. Grid layouts (2-col, 3-col) for content
-4. Bar charts with animated fills
-5. Tables with hover states
-6. Risk badges (color-coded)
-7. CTA box with glow animation
-8. Footer with disclaimer
-```
-
----
-
-### Phase 6: Validation Report
-
-Include in final deliverable:
-- Validation methodology used
-- Confidence scores per section
-- Key findings from adversarial review
-- Resolved conflicts
-- Remaining caveats/assumptions
+- Premium card styling
+- Alternating section backgrounds
 
 ---
 
 ## Output Deliverables
 
 1. **HTML Business Plan** (`[project]_business_plan.html`)
-   - Complete, standalone HTML file
-   - Embedded CSS (no external dependencies except Google Fonts)
-   - ~2,500+ words of prose
+   - Complete standalone file
+   - Embedded CSS (no external dependencies except fonts)
+   - 2,500+ words of prose
    - 10+ data visualizations
-   - Micro-animations for engagement
 
-2. **Assets Folder** (`assets/`)
+2. **Assets Folder** (optional)
    - Generated images
-   - Any additional visual resources
-
-3. **Research Summary** (optional artifact)
-   - Grounded data sources
-   - Validation notes
 
 ---
 
-## Example Usage
+## Execution Checklist
 
 ```
-User: Create an investment-ready business plan for a mobile pet grooming service in Austin, TX
-
-Agent:
-1. Researches Austin pet services market, pricing, regulations
-2. Applies 10-persona validation to each section
-3. Generates professional imagery
-4. Builds premium HTML document
-5. Delivers complete package with validation report
+[ ] 1. Detect MODE (CREATE or REFINE)
+[ ] 2. Identify business concept and geography
+[ ] 3. Execute web research grounding (3+ searches)
+[ ] 4. For each section:
+      [ ] a. Draft content
+      [ ] b. Apply V(8, 3, 1) validation
+      [ ] c. Incorporate feedback
+[ ] 5. Generate visual assets (4+ images)
+[ ] 6. Create CSS charts (8+ charts)
+[ ] 7. Assemble HTML document
+[ ] 8. Final quality check
+[ ] 9. Deliver with validation report
 ```
 
 ---
 
-## Quality Checklist
+## Anti-Patterns
 
-Before delivering:
-- [ ] All sections have validation badges with confidence scores
-- [ ] All financial claims grounded via web search
-- [ ] All regulatory requirements verified for specific geography
-- [ ] Premium visual design with micro-animations
-- [ ] 10+ charts/graphs included
-- [ ] Professional imagery generated
-- [ ] ~2,500+ words of compelling prose
-- [ ] Document opens correctly in browser
-- [ ] All images load properly
+❌ **Ungrounded claims**: All financial data must cite web sources
+❌ **Generic content**: Must be specific to geography and industry
+❌ **Skipping validation**: Each section needs 8-persona review
+❌ **Placeholder images**: Generate real imagery, no placeholders
+❌ **Missing charts**: Minimum 8 data visualizations required
+
+---
+
+## ⚠️ Attention Boost: Critical Reminders
+
+> **This section repeats key instructions for long-context processing.**
+
+### DO NOT SIMPLIFY
+
+1. **All financial claims must be web-grounded** — Search before asserting
+2. **Each section gets V(8, 3, 1)** — 8 personas, 3 rounds, 1 pulse
+3. **Minimum 4 images, 8 charts** — Premium visual standard
+4. **2,500+ words prose** — Not a skeleton, a complete document
+5. **Validation badges on every section** — Show confidence scores
+
+### Quick Formula
+
+```
+Business Plan = 10 sections × V(8, 3, 1) each
+             = 80 persona-evaluations + 10 web searches
+             + 4 images + 8 charts
+```
+
+**END OF SKILL DOCUMENT**
